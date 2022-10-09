@@ -13,4 +13,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE ${TARGET_PORT}
 
 # Make sure MLFLOW_TRACKING_URI is set - older Compute Instances don't have it
-CMD [-z "${MLFLOW_TRACKING_URI}"] && mlflow server --backend-store-uri ${MLFLOW_TRACKING_URI} --default-artifact-root ${MLFLOW_TRACKING_URI} --host 0.0.0.0 --port ${TARGET_PORT}
+# Also ENSURE it is again passed to the Custom Application
+CMD mlflow server --backend-store-uri ${MLFLOW_TRACKING_URI} --default-artifact-root ${MLFLOW_TRACKING_URI} --host 0.0.0.0 --port ${TARGET_PORT}
