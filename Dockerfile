@@ -4,6 +4,7 @@ LABEL maintainer="Akshaya Annavajhala"
 # This is just what the proxy will try to talk to on the compute instance
 # It is not necessarily the "published port" or user facing port
 ARG TARGET_PORT=5001
+ENV TARGET_PORT=${TARGET_PORT}
 
 WORKDIR /server/
 
