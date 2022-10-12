@@ -10,6 +10,11 @@ WORKDIR /server/
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+# This is a workaround for CI's broken identity responder inside a custom application.
+# Remove this once that is fixed. To use this, you must
+# 1. Bind mount ~/.azure (/home/azureuser/.azure)
+# 2. set env var HOME=/home/azureuser
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 EXPOSE ${TARGET_PORT}
 
