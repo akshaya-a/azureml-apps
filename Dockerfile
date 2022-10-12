@@ -14,6 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Remove this once that is fixed. To use this, you must
 # 1. Bind mount ~/.azure (/home/azureuser/.azure)
 # 2. set env var HOME=/home/azureuser
+# https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#option-2-step-by-step-installation-instructions
+RUN apt-get update && apt-get install curl -y
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 EXPOSE ${TARGET_PORT}
