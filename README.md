@@ -9,8 +9,6 @@ Run MLflow UI on AzureML Compute Instances as a custom application
 
 ### ARM Template
 
-:warning: This will not work for Private Link Workspaces - use the manual steps below.
-
 1. Deploy the above ARM template
    1. Select the existing Workspace name
    1. Select a name for the newly created Compute Instance that will host the UI

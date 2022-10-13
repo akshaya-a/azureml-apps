@@ -19,7 +19,7 @@
         {
             "type": "Microsoft.MachineLearningServices/workspaces/computes",
             "apiVersion": "2021-03-01-preview",
-            "name": "[concat(parameters('workspaceName'), '/', parameters('name'))]",
+            "name": "[concat(parameters('workspaceName'), '/', parameters('computeInstanceName'))]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "computeType": "ComputeInstance",
@@ -39,7 +39,7 @@
                             "environmentVariables": {
                                 "MLFLOW_TRACKING_URI": {
                                     "type": "local",
-                                    "value": "[concat('azureml://', resourceGroup().location, '.api.azureml.ms/mlflow/v1.0/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.MachineLearningServices/workspaces/', parameters('workspaceName'))]"
+                                    "value": "[reference('workspaceName').mlFlowTrackingUri]"
                                 },
                                 "HOME": {
                                     "type": "local",
