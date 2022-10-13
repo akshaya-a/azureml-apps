@@ -39,7 +39,7 @@
                             "environmentVariables": {
                                 "MLFLOW_TRACKING_URI": {
                                     "type": "local",
-                                    "value": "[reference('workspaceName').mlFlowTrackingUri]"
+                                    "value": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaceName'))).mlFlowTrackingUri]"
                                 },
                                 "HOME": {
                                     "type": "local",
