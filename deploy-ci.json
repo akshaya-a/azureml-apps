@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "String",
+            "metadata": {
+                "description": "Specifies the name of the Azure Machine Learning workspace."
+            }
+        },
+        "name": {
+            "type": "String",
+            "metadata": {
+                "description": "Specifies the name of Compute Instance."
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/computes",
+            "apiVersion": "2021-03-01-preview",
+            "name": "[concat(parameters('workspaceName'), '/', parameters('name'))]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "computeType": "ComputeInstance",
+                "properties": {
+                    "vmSize": "STANDARD_DS3_V2",
+                    "applicationSharingPolicy": "Shared",
+                    "customServices": [
+                        {
+                            "name": "mlflow-ui",
+                            "image": {
+                                "type": "docker",
+                                "reference": "ghcr.io/akshaya-a/azureml-mlflow-ui:main"
+                            },
+                            "docker": {
+                                "privileged": true
+                            },
+                            "environmentVariables": {
+                                "MLFLOW_TRACKING_URI": {
+                                    "type": "local",
+                                    "value": "[concat('azureml://', resourceGroup().location, '.api.azureml.ms/mlflow/v1.0/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.MachineLearningServices/workspaces/', parameters('workspaceName'))]"
+                                },
+                                "HOME": {
+                                    "type": "local",
+                                    "value": "/home/azureuser"
+                                }
+                            },
+                            "endpoints": [
+                                {
+                                    "name": "connect",
+                                    "protocol": "http",
+                                    "target": 5001,
+                                    "published": 5001
+                                }
+                            ],
+                            "volumes": [
+                                {
+                                    "type": "bind",
+                                    "source": "/home/azureuser/.azure",
+                                    "target": "/home/azureuser/.azure"
+                                }
+                            ]
+                        }
+                    ],
+                    "computeInstanceAuthorizationType": "personal"
+                }
+            }
+        }
+    ]
+}
