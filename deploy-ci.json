@@ -8,7 +8,7 @@
                 "description": "Specifies the name of the Azure Machine Learning workspace."
             }
         },
-        "name": {
+        "computeInstanceName": {
             "type": "String",
             "metadata": {
                 "description": "Specifies the name of Compute Instance."
