@@ -12,9 +12,11 @@ Run MLflow UI on AzureML Compute Instances as a custom application
 1. Deploy the above ARM template
    1. Select the existing Workspace name
    1. Select a name for the newly created Compute Instance that will host the UI
-1. Login to the newly created CI's terminal
-1. Run `az login`
+1. Navigate to the newly created CI's terminal
+   ![login](./images/terminal-for-az-login.png)
+1. Run `az login` and follow the instructions to log in
 1. That's it! Navigate to the mlflow ui app created on the CI in your browser!
+   ![ui](./images/mlflow-ui-link.png)
 
 ### Manual
 
@@ -25,6 +27,8 @@ Run MLflow UI on AzureML Compute Instances as a custom application
    1. Set MLFLOW_TRACKING_URI to the AML Workspace's tracking uri (copy from the Azure Portal)
    1. Set HOME to `/home/azureuser`
    1. Expose `5001` on both Target + Published ports
-1. Login to the newly created CI's terminal
-1. Run `az login`
+1. Navigate to the newly created CI's terminal
+   ![login](./images/terminal-for-az-login.png)
+1. Run `az login` and follow the instructions to log in
 1. That's it! Navigate to the mlflow ui app created on the CI in your browser!
+   ![ui](./images/mlflow-ui-link.png)

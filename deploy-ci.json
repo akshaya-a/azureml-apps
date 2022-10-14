@@ -10,8 +10,9 @@
         },
         "computeInstanceName": {
             "type": "String",
+            "defaultValue": "[concat(uniqueString(parameters('workspaceName')), '-mlflow-ui')]",
             "metadata": {
-                "description": "Specifies the name of Compute Instance."
+                "description": "Specifies the name of the Compute Instance that will be created to host the UI"
             }
         }
     },
