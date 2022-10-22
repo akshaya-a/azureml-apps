@@ -1,0 +1,72 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "String",
+            "metadata": {
+                "description": "Specifies the name of the Azure Machine Learning workspace."
+            }
+        },
+        "computeInstanceName": {
+            "type": "String",
+            "defaultValue": "[concat('mlflow-ui-', uniqueString(parameters('workspaceName')))]",
+            "metadata": {
+                "description": "Specifies the name of the Compute Instance that will be created to host the UI"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/computes",
+            "apiVersion": "2021-03-01-preview",
+            "name": "[concat(parameters('workspaceName'), '/', parameters('computeInstanceName'))]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "computeType": "ComputeInstance",
+                "properties": {
+                    "vmSize": "STANDARD_DS3_V2",
+                    "applicationSharingPolicy": "Shared",
+                    "customServices": [
+                        {
+                            "name": "mlflow-ui",
+                            "image": {
+                                "type": "docker",
+                                "reference": "ghcr.io/akshaya-a/azureml-apps-mlflow-ui:main"
+                            },
+                            "docker": {
+                                "privileged": true
+                            },
+                            "environmentVariables": {
+                                "MLFLOW_TRACKING_URI": {
+                                    "type": "local",
+                                    "value": "[reference(resourceId(subscription().subscriptionId, resourceGroup().name, 'Microsoft.MachineLearningServices/workspaces', parameters('workspaceName')), '2018-11-19').mlFlowTrackingUri]"
+                                },
+                                "HOME": {
+                                    "type": "local",
+                                    "value": "/home/azureuser"
+                                }
+                            },
+                            "endpoints": [
+                                {
+                                    "name": "connect",
+                                    "protocol": "http",
+                                    "target": 5001,
+                                    "published": 5001
+                                }
+                            ],
+                            "volumes": [
+                                {
+                                    "type": "bind",
+                                    "source": "/home/azureuser/.azure",
+                                    "target": "/home/azureuser/.azure"
+                                }
+                            ]
+                        }
+                    ],
+                    "computeInstanceAuthorizationType": "personal"
+                }
+            }
+        }
+    ]
+}
