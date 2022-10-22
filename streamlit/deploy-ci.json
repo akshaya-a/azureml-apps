@@ -10,7 +10,7 @@
         },
         "computeInstanceName": {
             "type": "String",
-            "defaultValue": "[concat('mlflow-ui-', uniqueString(parameters('workspaceName')))]",
+            "defaultValue": "[concat('streamlit-', uniqueString(parameters('workspaceName')))]",
             "metadata": {
                 "description": "Specifies the name of the Compute Instance that will be created to host the UI"
             }
@@ -29,10 +29,10 @@
                     "applicationSharingPolicy": "Shared",
                     "customServices": [
                         {
-                            "name": "mlflow-ui",
+                            "name": "streamlit",
                             "image": {
                                 "type": "docker",
-                                "reference": "ghcr.io/akshaya-a/azureml-apps-mlflow-ui:main"
+                                "reference": "ghcr.io/akshaya-a/azureml-apps-streamlit:main"
                             },
                             "docker": {
                                 "privileged": true
@@ -51,8 +51,8 @@
                                 {
                                     "name": "connect",
                                     "protocol": "http",
-                                    "target": 5001,
-                                    "published": 5001
+                                    "target": 8501,
+                                    "published": 8501
                                 }
                             ],
                             "volumes": [

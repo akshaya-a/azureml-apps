@@ -1,9 +1,9 @@
-# MLflow UI on AzureML
+# Streamlit on AzureML
 
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2Fmlflow-ui%2Fdeploy-ci.json)
-[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2Fmlflow-ui%2Fdeploy-ci.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2streamlit%2Fdeploy-ci.json)
+[![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2Fstreamlit%2Fdeploy-ci.json)
 
-Run MLflow UI on AzureML Compute Instances as a custom application
+Run Streamlit on AzureML Compute Instances as a custom application
 
 ## Instructions
 
@@ -22,7 +22,7 @@ Run MLflow UI on AzureML Compute Instances as a custom application
 
 1. Compute Instance in the Workspace of your choice
 1. Custom Application in the above CI that references this repo's docker image
-   1. Set docker image to `ghcr.io/akshaya-a/azureml-apps-mlflow-ui:main`
+   1. Set docker image to `ghcr.io/akshaya-a/azureml-apps-streamlit:main`
    1. Add `/home/azureuser/.azure` : `/home/azureuser/.azure` as a Bind Mount
    1. Set MLFLOW_TRACKING_URI to the AML Workspace's tracking uri (copy from the Azure Portal)
    1. Set HOME to `/home/azureuser`
