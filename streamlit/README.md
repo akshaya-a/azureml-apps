@@ -1,6 +1,6 @@
 # Streamlit on AzureML
 
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2streamlit%2Fdeploy-ci.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2Fstreamlit%2Fdeploy-ci.json)
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fakshaya-a%2Fazureml-apps%2Fmain%2Fstreamlit%2Fdeploy-ci.json)
 
 Run Streamlit on AzureML Compute Instances as a custom application
