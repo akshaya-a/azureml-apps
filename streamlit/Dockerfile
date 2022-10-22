@@ -22,4 +22,4 @@ EXPOSE ${TARGET_PORT}
 
 # Make sure MLFLOW_TRACKING_URI is set - older Compute Instances don't have it
 # Also ENSURE it is again passed to the Custom Application
-CMD python -m streamlit hello --server.enableWebsocketCompression=false --server.enableCORS=false --server.enableXsrfProtection=false > server.log 2>&1
+CMD streamlit run https://raw.githubusercontent.com/streamlit/demo-uber-nyc-pickups/main/streamlit_app.py --server.enableWebsocketCompression=false --server.enableCORS=false --server.enableXsrfProtection=false > server.log 2>&1
